@@ -16,7 +16,6 @@ DEBUG = config.DEBUG
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -69,11 +68,11 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'projectdb',
-        'USER' : 'projectuser',
-        'PASSWORD' : 'lolipop',
-        'HOST' : '127.0.0.1',
-        'PORT' : '5432',
+        'NAME': config.DB_NAME,
+        'USER' : config.DB_USERNAME,
+        'PASSWORD' : config.DB_PASSWORD,
+        'HOST' : config.DB_HOST,
+        'PORT' : config.DB_HOST_PORT,
     }
 }
 
@@ -102,7 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Etc/GMT-3'
 
 USE_I18N = True
 
