@@ -2,3 +2,5 @@ workspace.code-workspace
 
 __pycashe__/
 *.py[cod]
+
+*project_config.py
