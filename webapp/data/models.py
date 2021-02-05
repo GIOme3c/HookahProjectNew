@@ -42,6 +42,7 @@ class Profile(models.Model):
         )
     avatar = models.ImageField(
         'Аватар',
+        blank = True,
         )
 
     def __str__(self):
@@ -98,8 +99,8 @@ class Position(models.Model):
         return self.title+' '+str(self.cost)
     
     class Meta:
-        verbose_name = 'Позиция'
-        verbose_name_plural = 'Позиции'
+        verbose_name = 'Позиция на продажу'
+        verbose_name_plural = 'Позиции на продажу'
 
 class MobilePhone(models.Model):
     staff = models.ForeignKey(
@@ -145,7 +146,7 @@ class Session(models.Model):
         )
     
     def __str__(self):
-        return self.place.__str__()+' '+self.staff.__str__()+' '+str(self.startTime)+'-'+str(self.endTime)
+        return self.place.__str__()+' '+self.staff.__str__()+' '+str(self.startTime.date())+' '+str(self.startTime.time())+'-'+str(self.endTime.date())+' '+str(self.endTime.time())
     
     class Meta:
         verbose_name = 'Смена'
@@ -179,6 +180,9 @@ class ItemCountType(models.Model):
         default='г'
         )
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         verbose_name = 'Тип исчисления'
         verbose_name_plural = 'Типы исчисления'
@@ -194,9 +198,13 @@ class Item(models.Model):
         verbose_name='Тип исчисления',
         on_delete = models.CASCADE,
         )
+    
+    def __str__(self):
+        return self.title+', '+self.countType.__str__()
+
     class Meta:
-        verbose_name = 'Позиция'
-        verbose_name_plural = 'Позиции'
+        verbose_name = 'Позиция инвентаря'
+        verbose_name_plural = 'Позиции инвентаря'
 
 class StartSession(models.Model):
     session = models.ForeignKey(
@@ -237,6 +245,19 @@ class EndSession(models.Model):
     class Meta:
         verbose_name = 'Окончание смены'
         verbose_name_plural = 'Окончания смен' 
+
+class ImgForSession(models.Model):
+    session = models.ForeignKey(
+        Session,
+        verbose_name= 'Смена',
+        on_delete = models.CASCADE,
+        )
+    image = models.ImageField(
+        'Сопроводительное изображение',
+        )
+    class Meta:
+        verbose_name = 'Изображение для смены'
+        verbose_name_plural = 'Изображения для смен' 
 
 class AddToSession(models.Model):
     session = models.ForeignKey(
