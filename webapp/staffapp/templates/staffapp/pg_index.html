@@ -1,0 +1,44 @@
+{% extends 'root/root.html' %}
+
+{% block content %}
+
+{% include 'staffapp/elements/el_navbar.html'%}
+
+<div class="container">
+    <div class="row">
+        <div class="col session-block">
+            <div class="">
+                <h3>Нет открытых смен</h3>
+            </div>
+            <div>
+                <p class="downbox" id="session-new-bttn"><i class="fas fa-plus"></i>  Начать новую смену</p>
+            </div>
+            
+        </div>
+        
+    </div>
+    <div class="rov">
+        <div class="col">
+            <div class="row">
+                <div class="col" id="workerapp-mainblock">
+                    <div class="upbox" id="close-sessions">
+                        {% include 'staffapp/elements/el_filter.html'%}
+                        <div class="superdownbox" id="close-sessions-array">
+                            {% include 'staffapp/elements/el_closesession_min.html'%}
+                            {% include 'staffapp/elements/el_closesession_min.html'%}
+                            {% include 'staffapp/elements/el_closesession_min.html'%}
+                            
+                        </div>
+                    </div>
+                              
+                    {% include 'staffapp/elements/el_stats_min.html'%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'staffapp/elements/el_bottom.html'%}
+{% include 'staffapp/elements/el_mobile_session_add_button.html'%}
+
+{% endblock %}

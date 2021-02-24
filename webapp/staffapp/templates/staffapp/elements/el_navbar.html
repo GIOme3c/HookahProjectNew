@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row nav">
+        <div class="col upbox" id="navbar">
+            <div class="navflex" id="start">
+                <div class="navbar-item">
+                    <p id="avatar"><i class="fas fa-user-circle"></i></p>
+                </div>
+                <div class="username navbar-item">
+                    <p>Username</p>
+                </div>
+            </div>
+            <div class="navflex" id="center">
+                <div id="id_clock"></div>
+                <script>digitalClock();</script>
+            </div>
+            <div class="navflex" id="end">
+                <div class="navbar-item downbox navbar-end-bttn" id="navbar-setting">
+                    <a href="{% url 'staffapp-setting' %}"><i class="fas fa-cog"></i></a>
+                </div>
+                <div class="navbar-item downbox navbar-end-bttn" id="navbar-logout">
+                    <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a>
+                </div>
+                <div class="navbar-item downbox navbar-end-bttn" id="navbar-menu">
+                    <p><i class="fas fa-bars"></i></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

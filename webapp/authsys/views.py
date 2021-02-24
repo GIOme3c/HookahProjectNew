@@ -14,13 +14,13 @@ def pageLogin(request):
             login(request, user)
 
             if request.user.is_staff:  
-                return redirect('adminindex')
+                return redirect('adminiapp')
             else:
-                return redirect('workerindex')
+                return redirect('staffapp')
         else:
             messages.error(request, 'Неправильный введен логин или пароль.')
     
-    return render(request, 'authsys/login.html')
+    return render(request, 'authsys/login_new.html')
 
 def pageLogout(request):
     logout(request)

@@ -1,0 +1,24 @@
+{% extends 'root/root.html' %}
+
+{% block content %}
+<div class="contaner">
+    <div class="row">
+        <div class="col box login-cont">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <label for="username">Логин:</label>
+                <input name="username" class="form-control" id="username" placeholder="Введите логин    " type="text">
+                <label for="password">Пароль:</label>
+                <input type="password" class="form-control" id="password" placeholder="Введите пароль" name="password">
+                <br>
+                {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                <button type="submit">Войти</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
