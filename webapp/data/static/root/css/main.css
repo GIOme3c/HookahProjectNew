@@ -26,10 +26,16 @@ hr{
     margin-bottom: 1.5em;
 }
 
+/* =======================================( FONTS )=========================================== */
+
+.font-main{
+    color: gainsboro;
+    font-family: Apex;
+}
+
 /* =======================================( BOXS )=========================================== */
 
 .upbox{
-    color: gainsboro;
     background-color: #2b2b2b;
 
     border-radius: 12px;
@@ -38,7 +44,6 @@ hr{
 }
 
 .downbox{
-    color: gainsboro;
     background-color: #2b2b2b;
 
     border-radius: 12px;
@@ -65,7 +70,6 @@ hr{
 }
 
 .superdownbox{
-    color: gainsboro;
     background-color: #1a1a1a;
 
     border-radius: 12px;
@@ -77,7 +81,6 @@ hr{
 }
 
 .hoverbox{
-    color: gainsboro;
     background-color: #2b2b2b;
 
     border-radius: 3px;
@@ -87,7 +90,7 @@ hr{
         
 }
 
-/* =======================================(NAVBAR)=========================================== */
+/* =======================================( NAVBAR )=========================================== */
 
 #navbar{
     display: flex;
@@ -97,8 +100,6 @@ hr{
 
     padding: 0.5em;
     margin: 1em;
-
-    font-family: Apex;
 }
 
 .navflex#start{
@@ -138,7 +139,7 @@ hr{
     margin-left: 8px;
 }
 
-/* =======================================(WORKERAPP MAIN BLOCK)=========================================== */
+/* =======================================( WORKERAPP MAIN BLOCK )=========================================== */
 
 #workerapp-mainblock{
     display: flex;
@@ -238,7 +239,7 @@ hr{
     width: 100%;
 }
 
-/* =======================================(INDEX BLOCK)=========================================== */
+/* =======================================( INDEX BLOCK )=========================================== */
 
 #index-block{
     display: flex;
@@ -264,7 +265,7 @@ p.logoone{
     padding: 10px;
     margin: 10px;
 }
-/* ========================  FILTER  ================================== */
+/* ======================== ( FILTER ) ================================== */
 .filter-box{
     margin-bottom: 15px;
     float: right;
@@ -292,7 +293,7 @@ p.logoone{
     padding-left: 15px;
 }
 
-/* ========================  NO  DISPLAY  ================================== */
+/* ======================== ( NO  DISPLAY ) ================================== */
 
 #navbar-menu{
     display: none;
