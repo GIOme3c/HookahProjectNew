@@ -1,5 +1,8 @@
 from django.shortcuts import render
 
 # Create your views here.
-def pageLogin(request):
+def test(request):
     return render(request, 'test_pages/test_page.html')
+
+def index(request):
+    return render(request, 'index/index.html')

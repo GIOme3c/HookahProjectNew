@@ -16,7 +16,7 @@ def pageLogin(request):
             if request.user.is_staff:  
                 return redirect('adminiapp')
             else:
-                return redirect('workerapp')
+                return redirect('staffapp')
         else:
             messages.error(request, 'Неправильный введен логин или пароль.')
     
