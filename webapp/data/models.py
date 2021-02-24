@@ -172,6 +172,9 @@ class Order(models.Model):
     class Meta:
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'
+    
+    def __str__(self):
+        return self.position.__str__()
 
 class ItemCountType(models.Model):
     title = models.CharField(
@@ -226,6 +229,9 @@ class StartSession(models.Model):
         verbose_name = 'Начало смены'
         verbose_name_plural = 'Начала смен'
 
+    def __str__(self):
+        return self.session.__str__()+' '+self.item.__str__()+' '+str(self.count)
+
 class EndSession(models.Model):
     session = models.ForeignKey(
         Session,
@@ -245,6 +251,9 @@ class EndSession(models.Model):
     class Meta:
         verbose_name = 'Окончание смены'
         verbose_name_plural = 'Окончания смен' 
+    
+    def __str__(self):
+        return self.session.__str__()+' '+self.item.__str__()+' '+str(self.count)
 
 class ImgForSession(models.Model):
     session = models.ForeignKey(
