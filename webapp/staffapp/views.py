@@ -21,17 +21,17 @@ def pg_settings(request):
 def pg_session_add(request):
     return render(request, 'staffapp/pg_add_session.html')
 
-def pg_session_end(request):
+def pg_session_end(request, pk=1):
     return render(request, 'staffapp/pg_end_session.html')
 
-def pg_session_init(request):
+def pg_session_init(request, pk=1):
     return render(request, 'staffapp/pg_init_session.html')
 
-def pg_session(request):
+def pg_session(request, pk=1):
     return render(request, 'staffapp/pg_session.html')
 
-def pg_session_change(request):
+def pg_session_change(request, pk=1):
     return render(request, 'staffapp/pg_change_session.html')
 
-def pg_session_addorder(request):
+def pg_session_addorder(request, pk=1):
     return render(request, 'staffapp/pg_add_order.html')
