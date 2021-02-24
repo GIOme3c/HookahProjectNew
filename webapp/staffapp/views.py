@@ -1,8 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import auth
+#from data.models import Profile
 
 # Create your views here.
 def pg_index(request):
-    return render(request, 'staffapp/pg_index.html')
+    user = request.user
+
+    if not user.is_authenticated:
+        return redirect('autherror')
+
+    content = {
+       'User':user,
+    }
+
+    return render(request, 'staffapp/pg_index.html', content)
 
 def pg_settings(request):
     return render(request, 'staffapp/pg_settings.html')
