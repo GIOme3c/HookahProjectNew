@@ -256,18 +256,18 @@ class EndSession(models.Model):
     def __str__(self):
         return self.session.__str__()+' '+self.item.__str__()+' '+str(self.count)
 
-class ImgForSession(models.Model):
-    session = models.ForeignKey(
-        Session,
-        verbose_name= 'Смена',
-        on_delete = models.CASCADE,
-        )
-    image = models.ImageField(
-        'Сопроводительное изображение',
-        )
-    class Meta:
-        verbose_name = 'Изображение для смены'
-        verbose_name_plural = 'Изображения для смен' 
+# class ImgForSession(models.Model):
+#     session = models.ForeignKey(
+#         Session,
+#         verbose_name= 'Смена',
+#         on_delete = models.CASCADE,
+#         )
+#     image = models.ImageField(
+#         'Сопроводительное изображение',
+#         )
+#     class Meta:
+#         verbose_name = 'Изображение для смены'
+#         verbose_name_plural = 'Изображения для смен' 
 
 class AddToSession(models.Model):
     session = models.ForeignKey(
