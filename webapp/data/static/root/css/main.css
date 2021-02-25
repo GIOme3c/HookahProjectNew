@@ -33,6 +33,14 @@ hr{
     font-family: Apex;
 }
 
+/* =======================================( ELS )=========================================== */
+
+.stl-input{
+    background-color: rgb(27, 27, 27);
+    color:gainsboro;
+    border-radius: 5px;
+}
+
 /* =======================================( BOXS )=========================================== */
 
 .upbox{
@@ -291,6 +299,25 @@ p.logoone{
 
     padding: 2px;
     padding-left: 15px;
+}
+/* ======================== ( ADD SESSION BOX ) ================================== */
+
+#session-add-block{
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 20px;
+}
+
+#session-add-block input{
+    width: 100%;
+}
+
+#session-add-block select{
+    width: 100%;
+    background-color: rgb(51, 51, 51);
+
+    border-radius: 5px;
 }
 
 /* ======================== ( NO  DISPLAY ) ================================== */

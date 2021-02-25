@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'staffapp',
     'adminapp',
     'authsys',
+    'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -10,8 +10,11 @@ def pg_index(request):
     if not user.is_authenticated:
         return redirect('autherror')
 
+    userSessions = Session.objects.filter(staff__id=user.profile.id)
+
     content = {
-       'User':user,
+       'user':user,
+       'userSessions':userSessions
     }
 
     return render(request, 'staffapp/pg_index.html', content)
@@ -23,7 +26,7 @@ def pg_settings(request):
         return redirect('autherror')
 
     content = {
-       'User':user,
+       'user':user,
     }
     return render(request, 'staffapp/pg_settings.html',content)
 
@@ -58,7 +61,7 @@ def pg_session_end(request, pk=1):
         return redirect('autherror')
 
     content = {
-       'User':user,
+       'user':user,
     }
     return render(request, 'staffapp/pg_end_session.html',content)
 
@@ -86,8 +89,6 @@ def pg_session_init(request, pk=1):
                 )
                 newStartSession.save()
         if request.POST.get('ActionType') == 'dec':
-            print('HHHHHHHHHHHHHHHHHHHHHHHUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUIIIIIIIIIIIIIIIIIIIIIIII')
-            print(request.POST.get('ItemID'))
             startSessionItem = StartSession.objects.get(id = request.POST.get('ItemID'))
             startSessionItem.delete()
 
@@ -103,7 +104,7 @@ def pg_session_init(request, pk=1):
     completeItems = StartSession.objects.filter(session = curSession)
 
     content = {
-       'User':user,
+       'user':user,
        'forms':forms,
        'complete':completeItems,
     }
@@ -116,7 +117,7 @@ def pg_session(request, pk=1):
         return redirect('autherror')
 
     content = {
-       'User':user,
+       'user':user,
        'Session':Session.objects.get(id = pk),
     }
     return render(request, 'staffapp/pg_session.html',content)
@@ -128,7 +129,7 @@ def pg_session_change(request, pk=1):
         return redirect('autherror')
 
     content = {
-       'User':user,
+       'user':user,
     }
     return render(request, 'staffapp/pg_change_session.html',content)
 
@@ -139,6 +140,6 @@ def pg_session_addorder(request, pk=1):
         return redirect('autherror')
 
     content = {
-       'User':user,
+       'user':user,
     }
     return render(request, 'staffapp/pg_add_order.html',content)

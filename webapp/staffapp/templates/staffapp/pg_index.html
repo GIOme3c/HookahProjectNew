@@ -11,7 +11,7 @@
                 <h3>Нет открытых смен</h3>
             </div>
             <div>
-                <p class="downbox" id="session-new-bttn"><i class="fas fa-plus"></i>  Начать новую смену</p>
+                <p class="downbox" id="session-new-bttn"><i class="fas fa-plus"></i><a href="{% url 'session-add' %}">  Начать новую смену</a></p>
             </div>
             
         </div>
@@ -24,9 +24,9 @@
                     <div class="upbox" id="close-sessions">
                         {% include 'staffapp/elements/el_filter.html'%}
                         <div class="superdownbox" id="close-sessions-array">
-                            {% include 'staffapp/elements/el_closesession_min.html'%}
-                            {% include 'staffapp/elements/el_closesession_min.html'%}
-                            {% include 'staffapp/elements/el_closesession_min.html'%}
+                            {% for el in userSessions %}
+                                {% include 'staffapp/elements/el_closesession_min.html'%}
+                            {% endfor %}
                             
                         </div>
                     </div>

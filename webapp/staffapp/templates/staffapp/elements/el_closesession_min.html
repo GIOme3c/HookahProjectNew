@@ -1,11 +1,11 @@
 <div class="hoverbox close-sessions-item">
     <div id="close-session-place">
-        Место
+        <p>{{el.place}}</p>
     </div>
     <div id="close-session-time">
-        Время
+        <p>{{el.startTime}} // {{el.endTime}}</p>
     </div>
     <div id="close-session-show">
-        show
+        <a class="downbox" href="/staffapp/session/{{el.id}}/"><i class="fas fa-eye"></i></a>
     </div>
 </div>
