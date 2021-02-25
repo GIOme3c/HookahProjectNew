@@ -151,6 +151,7 @@ class Session(models.Model):
     class Meta:
         verbose_name = 'Смена'
         verbose_name_plural = 'Смены'
+        get_latest_by = "endTime"
 
 class Order(models.Model):
     session = models.ForeignKey(
