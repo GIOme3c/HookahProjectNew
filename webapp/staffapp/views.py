@@ -49,7 +49,7 @@ def pg_session_add(request):
 
     content = {
         'places':Place.objects.all(),
-        'SessionForm':SessionForm(),
+        'sessionForm':SessionForm(),
         'user':user,
     }
     return render(request, 'staffapp/pg_add_session.html',content)
@@ -118,7 +118,7 @@ def pg_session(request, pk=1):
 
     content = {
        'user':user,
-       'Session':Session.objects.get(id = pk),
+       'session':Session.objects.get(id = pk),
     }
     return render(request, 'staffapp/pg_session.html',content)
 

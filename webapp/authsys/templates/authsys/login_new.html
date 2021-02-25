@@ -1,22 +1,23 @@
 {% extends 'root/root.html' %}
 
 {% block content %}
-<div class="contaner">
+<div class="container font-main">
     <div class="row">
-        <div class="col box login-cont">
+        <div class="col upbox" id="login-block">
             <form method="POST" action="">
                 {% csrf_token %}
-                <label for="username">Логин:</label>
-                <input name="username" class="form-control" id="username" placeholder="Введите логин    " type="text">
-                <label for="password">Пароль:</label>
-                <input type="password" class="form-control" id="password" placeholder="Введите пароль" name="password">
+                <h1 align=center>Вход в систему</h1>
+                <label for="username">Логин:</label><br>
+                <input name="username" class="stl-input" id="username" placeholder="Введите логин" type="text"><br>
+                <label for="password">Пароль:</label><br>
+                <input type="password" class="stl-input" id="password" placeholder="Введите пароль" name="password"><br>
                 <br>
                 {% for message in messages %}
                     <div class="alert alert-danger" role="alert">
                         {{ message }}
                     </div>
                 {% endfor %}
-                <button type="submit">Войти</button>
+                <button type="submit" class="downbox font-main">Войти</button>
             </form>
         </div>
     </div>
