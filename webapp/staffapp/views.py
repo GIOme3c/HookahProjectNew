@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from data.models import Place, Session, EndSession, StartSession, Item
-from data.forms import SessionForm, StratSessionForm
+from data.models import Place, Session, EndSession, StartSession, Item, AddToSession, DeleteOnSession
+from data.forms import SessionForm, StratSessionForm, AddToSessionForm
 
 # Create your views here.
 def pg_index(request):
@@ -128,8 +128,31 @@ def pg_session_change(request, pk=1):
     if not user.is_authenticated:
         return redirect('autherror')
 
+    if request.method == "POST":
+        newForm = AddToSessionForm(request.POST)
+        if newForm.is_valid():
+            if request.POST.get('formType') == 'add':
+                newAdd = AddToSession(
+                    session = Session.objects.get(id = pk),
+                    item = newForm.cleaned_data['item'],
+                    count = newForm.cleaned_data['count']
+                )
+                newAdd.save()
+            if request.POST.get('formType') == 'dec':
+                newDec = DeleteOnSession(
+                    session = Session.objects.get(id = pk),
+                    item = newForm.cleaned_data['item'],
+                    count = newForm.cleaned_data['count']
+                )
+                newDec.save()
+        
+    nowAdd = AddToSession.objects.filter(session__id = pk)
+    nowDec = DeleteOnSession.objects.filter(session__id = pk)
     content = {
        'user':user,
+       'form':AddToSessionForm(),
+       'addItems':nowAdd,
+       'decItems':nowDec,
     }
     return render(request, 'staffapp/pg_change_session.html',content)
 

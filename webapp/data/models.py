@@ -288,6 +288,9 @@ class AddToSession(models.Model):
     class Meta:
         verbose_name = 'Привоз'
         verbose_name_plural = 'Пирвозы'
+    
+    def __str__(self):
+        return self.item.__str__()+str(self.count)
 
 class DeleteOnSession(models.Model):
     session = models.ForeignKey(
@@ -308,3 +311,6 @@ class DeleteOnSession(models.Model):
     class Meta:
         verbose_name = 'Увоз'
         verbose_name_plural = 'Увозы'
+    
+    def __str__(self):
+        return self.item.__str__()+str(self.count)
