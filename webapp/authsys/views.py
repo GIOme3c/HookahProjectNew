@@ -14,7 +14,7 @@ def pageLogin(request):
             login(request, user)
 
             if request.user.is_staff:  
-                return redirect('adminiapp')
+                return redirect('adminapp')
             else:
                 return redirect('staffapp')
         else:
