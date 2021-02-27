@@ -154,6 +154,21 @@ def pg_session(request, pk=1):
     }
     return render(request, 'staffapp/pg_session.html',content)
 
+def check_acces_dec(newDec, pk):
+    if not StartSession.objects.filter(session_id = pk, item = newDec.item):
+        return False
+
+    countSumm = StartSession.objects.get(session_id = pk, item = newDec.item).count
+    for el in AddToSession.objects.filter(session_id = pk, item = newDec.item):
+        countSumm+=el.count
+    for el in DeleteOnSession.objects.filter(session_id = pk, item = newDec.item):
+        countSumm-=el.count
+
+    if countSumm<float(newDec.count):
+        return False
+
+    return True
+
 def pg_session_change(request, pk=1):
     user = request.user
 
@@ -176,7 +191,10 @@ def pg_session_change(request, pk=1):
                     item = newForm.cleaned_data['item'],
                     count = newForm.cleaned_data['count']
                 )
-                newDec.save()
+                if check_acces_dec(newDec, pk):
+                    newDec.save()
+                else:
+                    print ('NOPE')
         
     nowAdd = AddToSession.objects.filter(session__id = pk)
     nowDec = DeleteOnSession.objects.filter(session__id = pk)
