@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from data.models import Place, Session, EndSession, StartSession, Item, AddToSession, DeleteOnSession
-from data.forms import SessionForm, StratSessionForm, AddToSessionForm
+from data.models import Place, Session, EndSession, StartSession, Item, AddToSession, DeleteOnSession, EndSession, Order
+from data.forms import SessionForm, StratSessionForm, AddToSessionForm, EndSessionForm, OrderForm
 
 # Create your views here.
 def pg_index(request):
@@ -60,8 +60,40 @@ def pg_session_end(request, pk=1):
     if not user.is_authenticated:
         return redirect('autherror')
 
+    curSession = Session.objects.get(id = pk)
+    items = EndSession.objects.filter(session = curSession)
+    forms = []
+
+    if request.method == "POST":
+        if request.POST.get('ActionType') == 'add':
+            newForm = EndSessionForm(request.Post)
+            if newForm.is_valid():
+                newEndSession = EndSession(
+                    session = curSession,
+                    item = Item.objects.get(id = request.POST.get('ItemID')),
+                    count = newForm.cleaned_data['count']
+                )
+                newEndSession.save()
+        if request.POST.get('ActionType') == 'dec':
+            newEndSession = EndSession.objects.get(id = request.POST.get('ItemID'))
+            newEndSession.delete()
+
+    for el in StartSession.objects.filter(session = curSession):
+        if not EndSession.objects.filter(session = curSession, item = el.item):
+            forms.append(
+                {
+                    'form':EndSessionForm(),
+                    'item':el,
+                }
+            )
+    
+    completeItems = EndSession.objects.filter(session = curSession)
+
     content = {
        'user':user,
+       'forms':forms,
+       'complete':completeItems,
+
     }
     return render(request, 'staffapp/pg_end_session.html',content)
 
@@ -162,7 +194,18 @@ def pg_session_addorder(request, pk=1):
     if not user.is_authenticated:
         return redirect('autherror')
 
+    if request.method == "POST":
+        newOrderForm = OrderForm(request.POST)
+        if newOrderForm.is_valid():
+            newOrder = Order(
+                session = Session.objects.get(id = pk),
+                position = newOrderForm.cleaned_data['position'],
+                comment = newOrderForm.cleaned_data['comment']
+            )
+            newOrder.save()
+
     content = {
        'user':user,
+       'form':OrderForm(),
     }
     return render(request, 'staffapp/pg_add_order.html',content)

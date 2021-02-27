@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Place, Session, StartSession, AddToSession
+from .models import Place, Session, StartSession, AddToSession, EndSession, Order
 
 class PlaceForm(ModelForm):
     class Meta:
@@ -20,3 +20,13 @@ class AddToSessionForm(ModelForm):
     class Meta:
         model = AddToSession
         fields = ['item', 'count']
+
+class EndSessionForm(ModelForm):
+    class Meta:
+        model = EndSession
+        fields = ['count']
+
+class OrderForm(ModelForm):
+    class Meta:
+        model = Order
+        fields = ['position','comment']

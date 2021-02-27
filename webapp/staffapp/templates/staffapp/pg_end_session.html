@@ -4,4 +4,35 @@
 
 {% include 'staffapp/elements/el_navbar.html'%}
 
+<div class="container">
+    <div class="row">
+        <div class="col upbox font-main">
+            {% for el in forms %}
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="ItemID" value="{{el.item.item.id}}">
+                <input type="hidden" name="ActionType" value="add">
+                {{el.item.item}}
+                {{el.form.count}}
+                <button type="submit">
+                    ADD
+                </button>
+            </form>
+            {% endfor %}
+            <hr>
+            {% for el in complete %}
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="ItemID" value="{{el.id}}">
+                <input type="hidden" name="ActionType" value="dec">
+                {{el.item}} {{el.count}}
+                <button type="submit">
+                    DEC
+                </button>
+            </form>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
 {% endblock %}
